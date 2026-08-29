@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ابتسامتك إلهامي — رواية عاطفية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <link rel="icon" href="photo.ico" type="image/x-icon" />
+    <meta name="description" content="ابتسامتك إلهامي — حكاية عن الحب والفراق والإلهام" />
+    <meta name="theme-color" content="#0d0d1a" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- شاشة التحميل -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-inner">
+            <canvas id="loader-canvas" width="120" height="120"></canvas>
+            <p class="loader-text">ابتسامتك إلهامي</p>
+            <div class="loader-progress">
+                <div class="loader-bar" id="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Canvas الخلفية -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- مؤشر التقدم -->
+    <div class="reading-progress">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- شاشة الترحيب -->
+    <div id="splash" class="splash">
+        <div class="splash-inner">
+            <div class="splash-stars">
+                <span>✦</span><span>✦</span><span>✦</span>
+            </div>
+            <h1 class="splash-title">ابتسامتك إلهامي</h1>
+            <p class="splash-sub">رواية عاطفية تسكن القلب</p>
+            <button id="splash-btn" class="splash-btn">
+        <span>ابدأ الرحلة</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </button>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div id="main-content" class="main-content hidden">
+
+        <!-- التنقل -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <span>📖</span>
+                <span>ابتسامتك إلهامي</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero-section">الرئيسية</a></li>
+                <li><a href="#about-section">عن الكتاب</a></li>
+                <li><a href="#chapters-section">الفصول</a></li>
+                <li><a href="#reviews-section">آراء القراء</a></li>
+                <li><a href="#quotes-section">اقتباسات</a></li>
+                <li><a href="#booking-section" class="nav-highlight">📕 احجز نسختك</a></li>
+                <li><a href="#contact-section">تواصل</a></li>
+            </ul>
+            <button class="theme-toggle" id="theme-toggle" aria-label="تبديل الثيم">
+        <span class="theme-icon">🌙</span>
+      </button>
+            <button class="nav-toggle" id="nav-toggle" aria-label="القائمة">
+        <span></span><span></span><span></span>
+      </button>
+        </nav>
+
+        <!-- Hero -->
+        <section id="hero-section" class="hero-section">
+            <div class="hero-shapes">
+                <div class="shape s1"></div>
+                <div class="shape s2"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-text animate-up">
+                    <span class="hero-badge">✨ رواية عاطفية</span>
+                    <h1 class="hero-title">
+                        <span class="g1">ابتسامتك</span>
+                        <span class="g2">إلهامي</span>
+                    </h1>
+                    <p class="hero-tagline">
+                        "ليس كل حبٍّ يُكتب ليُروى،<br/> فبعض الحكايات تُكتب لأنها<br/> تركت في القلب أثرًا لا يزول."
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#about-section" class="btn btn-gold">اكتشف القصة</a>
+                        <a href="#contact-section" class="btn btn-outline">تواصل معنا</a>
+                        <a href="#booking-section" class="btn btn-outline">احجز نسختك</a>
+                    </div>
+                </div>
+                <div class="hero-book-wrap animate-up" style="animation-delay:.3s">
+                    <div class="book-scene" id="book-scene" tabindex="0" role="button" aria-label="انقر لعرض الغلاف">
+                        <div class="book-glow"></div>
+                        <div class="book-3d" id="book-3d">
+                            <div class="book-front">
+                                <img src="photo.png" alt="غلاف ابتسامتك إلهامي" />
+                                <div class="book-glare"></div>
+                            </div>
+                            <div class="book-spine"></div>
+                        </div>
+                        <div class="book-shadow"></div>
+                        <span class="zoom-tip">🔍 انقر للعرض</span>
+                    </div>
+                    <div class="floater f1">💛</div>
+                    <div class="floater f2">✦</div>
+                    <div class="floater f3">✍️</div>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <span>مرّر للأسفل</span>
+                <div class="scroll-dot"></div>
+            </div>
+        </section>
+
+        <!-- الإحصائيات -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card reveal">
+                    <canvas class="stat-ring" data-val="5000" data-label="+"></canvas>
+                    <p>قارئ سعيد</p>
+                </div>
+                <div class="stat-card reveal" data-delay="100">
+                    <canvas class="stat-ring" data-val="4.8" data-label="/5" data-dec="1"></canvas>
+                    <p>تقييم القراء</p>
+                </div>
+                <div class="stat-card reveal" data-delay="200">
+                    <canvas class="stat-ring" data-val="250" data-label="+"></canvas>
+                    <p>مراجعة</p>
+                </div>
+                <div class="stat-card reveal" data-delay="300">
+                    <canvas class="stat-ring" data-val="12" data-label=" فصل"></canvas>
+                    <p>فصول مشوّقة</p>
+                </div>
+                <!-- ✅ Ajout de la stat "124 صفحة" -->
+                <div class="stat-card reveal" data-delay="400">
+                    <canvas class="stat-ring" data-val="124" data-label=" صفحة"></canvas>
+                    <p>صفحات الرواية</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- عن الكتاب -->
+        <section id="about-section" class="about-section">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <span class="sec-badge">📖 القصة</span>
+                    <h2>عن الكتاب</h2>
+                    <div class="sec-line"></div>
+                </div>
+                <div class="cards-grid">
+                    <div class="card reveal">
+                        <span class="card-ico">💘</span>
+                        <h3>الحب والملاذ</h3>
+                        <p>حكاية عن الحب حين يكون ملاذًا دافئًا في عالم بارد.</p>
+                    </div>
+                    <div class="card reveal" data-delay="100">
+                        <span class="card-ico">💔</span>
+                        <h3>الإهمال والوجع</h3>
+                        <p>عن الثقة التي قد تهتز أمام وقع الخيانة والإهمال.</p>
+                    </div>
+                    <div class="card reveal" data-delay="200">
+                        <span class="card-ico">🌙</span>
+                        <h3>الفراق والأثر</h3>
+                        <p>بعض الأشخاص يرحلون لكن أثرهم يبقى فينا إلى الأبد.</p>
+                    </div>
+                    <div class="card reveal" data-delay="300">
+                        <span class="card-ico">⭐</span>
+                        <h3>الإلهام والابتسامة</h3>
+                        <p>هل لابتسامة شخص ما قدرة على إلهام حكاية كاملة؟</p>
+                    </div>
+                </div>
+                <div class="about-quote reveal">
+                    <span class="qm">"</span>
+                    <p>بين الذكريات والمشاعر والخذلان، يعيش أبطال هذه الحكاية صراعًا بين التمسك بمن نحب وبين امتلاك الشجاعة الكافية لتركه.</p>
+                    <span class="qm close">"</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- الفصول -->
+        <section id="chapters-section" class="chapters-section">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <span class="sec-badge">📚 الفصول</span>
+                    <h2>من صفحات الرواية</h2>
+                    <div class="sec-line"></div>
+                </div>
+                <div class="chapters-grid">
+                    <article class="chapter-card reveal" data-delay="0">
+                        <div class="chapter-header">
+                            <div class="chapter-num-wrap">
+                                <span class="chapter-num">١</span>
+                                <div class="chapter-num-ring"></div>
+                            </div>
+                            <div class="chapter-meta">
+                                <span class="chapter-label">الفصل الأول</span>
+                                <h3 class="chapter-title">بين بداية جميلة ويقين مؤلم</h3>
+                            </div>
+                        </div>
+                        <div class="chapter-divider">
+                            <span></span><span class="cd-icon">✦</span><span></span>
+                        </div>
+                        <div class="chapter-body">
+                            <p>
+                                كان كل شيء يشبه البداية التي طالما تمناها القلب؛ مشاعر تتفتح بهدوء وابتسامات توحي بأن شيئًا جميلًا قد وُجد أخيرًا؛ لكن خلف تلك البداية كانت حقيقة أخرى تتشكل في الخفاء، تنكشف شيئًا فشيئًا، حتى تحوّل ما بدا كأجمل فصول الحكاية إلى أول فصلٍ من الوجع.
+                            </p>
+                        </div>
+                        <div class="chapter-footer">
+                            <span class="chapter-tag">💛 البداية</span>
+                            <span class="chapter-tag">🌸 المشاعر</span>
+                            <span class="chapter-tag">💔 الوجع</span>
+                        </div>
+                        <div class="chapter-glow ch-glow-1"></div>
+                    </article>
+                    <div class="chapters-connector reveal" data-delay="150">
+                        <div class="connector-line"></div>
+                        <div class="connector-orb"><span>📖</span></div>
+                        <div class="connector-line"></div>
+                        <p class="connector-label">رحلة من الأمل إلى الحقيقة</p>
+                    </div>
+                    <article class="chapter-card last-chapter reveal" data-delay="300">
+                        <div class="chapter-header">
+                            <div class="chapter-num-wrap">
+                                <span class="chapter-num">١٢</span>
+                                <div class="chapter-num-ring"></div>
+                            </div>
+                            <div class="chapter-meta">
+                                <span class="chapter-label">الفصل الأخير</span>
+                                <h3 class="chapter-title">النهاية</h3>
+                            </div>
+                        </div>
+                        <div class="chapter-divider">
+                            <span></span><span class="cd-icon">✦</span><span></span>
+                        </div>
+                        <div class="chapter-body">
+                            <p>
+                                حين تصل الحكاية إلى آخر صفحاتها، تتقاطع الذكريات مع الحقيقة، وتظهر أشياء لم يكن من السهل مواجهتها؛ فبين حبٍ ترك أثره، جرحٍ لم يلتئم، وقرارٍ قد يغيّر كل شيء، تصبح النهاية أقرب مما كان متوقعًا… لكن هل يمكن لقلبٍ أحبّ بكل ما فيه أن يتعلّم كيف يودّع؟
+                            </p>
+                        </div>
+                        <div class="chapter-footer">
+                            <span class="chapter-tag">🌙 الفراق</span>
+                            <span class="chapter-tag">💜 الأثر</span>
+                            <span class="chapter-tag">✨ الإلهام</span>
+                        </div>
+                        <div class="chapter-glow ch-glow-2"></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- آراء القراء -->
+        <section id="reviews-section" class="reviews-section">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <span class="sec-badge">⭐ آراء</span>
+                    <h2>ماذا قال القراء</h2>
+                    <div class="sec-line"></div>
+                </div>
+                <div class="reviews-rating reveal">
+                    <div class="rating-summary">
+                        <div class="rating-stars">
+                            <span class="star-icon">★</span>
+                            <span class="star-icon">★</span>
+                            <span class="star-icon">★</span>
+                            <span class="star-icon">★</span>
+                            <span class="star-icon">★</span>
+                        </div>
+                        <p class="rating-text">4.9 / 5 — بناءً على آراء القراء</p>
+                    </div>
+                </div>
+                <div class="reviews-grid">
+                    <!-- Les 5 cartes de reviews -->
+                    <div class="review-card reveal">
+                        <div class="review-header">
+                            <div class="review-stars"><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span></div>
+                        </div>
+                        <div class="review-quote-icon">❝</div>
+                        <div class="review-text">
+                            <p>رواية استثنائية تلمس أعماق القلب، كل كلمة فيها تحمل روحًا حقيقية. قرأتها في ليلة واحدة ولم أستطع أن أضعها جانبًا.</p>
+                        </div>
+                        <div class="review-author">
+                            <div class="author-avatar">ن</div>
+                            <div class="author-info">
+                                <h4>نور الهدى</h4>
+                                <p>طالبة وكاتبة</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card reveal" data-delay="100">
+                        <div class="review-header">
+                            <div class="review-stars"><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span></div>
+                        </div>
+                        <div class="review-quote-icon">❝</div>
+                        <div class="review-text">
+                            <p>رواية تمس القلب بعمق، كل صفحة فيها تحكي قصة حقيقية من حياتنا. الكاتب استطاع أن ينقل المشاعر بصدق وإخلاص.</p>
+                        </div>
+                        <div class="review-author">
+                            <div class="author-avatar">س</div>
+                            <div class="author-info">
+                                <h4>سارة محمود</h4>
+                                <p>معلمة ومحبة للقراءة</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card reveal" data-delay="200">
+                        <div class="review-header">
+                            <div class="review-stars"><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span></div>
+                        </div>
+                        <div class="review-quote-icon">❝</div>
+                        <div class="review-text">
+                            <p>ابتسامتك إلهامي عنوان بسيط لكنه يحمل معاني عميقة جدًا. الرواية تأخذك في رحلة مشاعر لا تنسى بين الحب والألم والأمل.</p>
+                        </div>
+                        <div class="review-author">
+                            <div class="author-avatar">أ</div>
+                            <div class="author-info">
+                                <h4>أحمد علي</h4>
+                                <p>كاتب وناقد أدبي</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card reveal" data-delay="300">
+                        <div class="review-header">
+                            <div class="review-stars"><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span></div>
+                        </div>
+                        <div class="review-quote-icon">❝</div>
+                        <div class="review-text">
+                            <p>ما أجمل أن تجد كتابًا يفهمك دون أن تنطق كلمة واحدة. هذا الكتاب فعل ذلك لي، اقرؤوه بقلب مفتوح.</p>
+                        </div>
+                        <div class="review-author">
+                            <div class="author-avatar">ل</div>
+                            <div class="author-info">
+                                <h4>ليلى العامري</h4>
+                                <p>قارئة مخضرمة</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card reveal" data-delay="400">
+                        <div class="review-header">
+                            <div class="review-stars"><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span><span class="review-star">★</span></div>
+                        </div>
+                        <div class="review-quote-icon">❝</div>
+                        <div class="review-text">
+                            <p>الكتاب يستحق أكثر من خمس نجوم! نثر جميل وأفكار عميقة وشخصيات حقيقية تعيش معك طوال الرواية.</p>
+                        </div>
+                        <div class="review-author">
+                            <div class="author-avatar">ف</div>
+                            <div class="author-info">
+                                <h4>فاطمة حسن</h4>
+                                <p>طبيبة وكاتبة مدونة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- الاقتباسات -->
+        <section id="quotes-section" class="quotes-section">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <span class="sec-badge">💬 أقوال</span>
+                    <h2>اقتباسات من القلب</h2>
+                    <div class="sec-line"></div>
+                </div>
+                <div class="slider reveal">
+                    <div class="slides" id="slides">
+                        <div class="slide active"><span class="bq">❝</span>
+                            <p>أحيانًا يكفي أن تبتسم لشخص ما لتترك في روحه ضوءًا لا يُطفأ.</p>
+                        </div>
+                        <div class="slide"><span class="bq">❝</span>
+                            <p>الحب ليس دائمًا موجودًا حين تحتاجه، لكنه يترك أثره حين يرحل.</p>
+                        </div>
+                        <div class="slide"><span class="bq">❝</span>
+                            <p>بعض الجروح لا تُشفى، بل تتحوّل إلى حكايات نرويها لمن يستحق.</p>
+                        </div>
+                        <div class="slide"><span class="bq">❝</span>
+                            <p>الفراق لا يعني النسيان، بل يعني أن بعض الناس خُلقوا جزءًا من قصتنا لا نهايتها.</p>
+                        </div>
+                    </div>
+                    <div class="slider-nav">
+                        <button id="q-prev" class="snav-btn">&#8250;</button>
+                        <div class="dots" id="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                        <button id="q-next" class="snav-btn">&#8249;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- المشاعر -->
+        <section class="feelings-section">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <span class="sec-badge">❤️ مشاركة</span>
+                    <h2>كيف تشعر بعد القراءة؟</h2>
+                    <div class="sec-line"></div>
+                </div>
+                <div class="feelings reveal">
+                    <button class="feel-btn" data-f="حب 💘">حب 💘</button>
+                    <button class="feel-btn" data-f="حزن 😢">حزن 😢</button>
+                    <button class="feel-btn" data-f="أمل 🌟">أمل 🌟</button>
+                    <button class="feel-btn" data-f="دهشة 😮">دهشة 😮</button>
+                    <button class="feel-btn" data-f="سعادة 😊">سعادة 😊</button>
+                    <button class="feel-btn" data-f="تأمل 🤔">تأمل 🤔</button>
+                </div>
+                <p class="feel-result" id="feel-result"></p>
+            </div>
+        </section>
+
+        <!-- التقييم -->
+        <section class="rating-section">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <span class="sec-badge">⭐ تقييم</span>
+                    <h2>قيّم الكتاب</h2>
+                    <div class="sec-line"></div>
+                </div>
+                <div class="rating-wrap reveal">
+                    <div class="stars" id="stars">
+                        <span class="star" data-v="1">★</span>
+                        <span class="star" data-v="2">★</span>
+                        <span class="star" data-v="3">★</span>
+                        <span class="star" data-v="4">★</span>
+                        <span class="star" data-v="5">★</span>
+                    </div>
+                    <p class="rating-msg" id="rating-msg">اختر تقييمك</p>
+                    <div class="rating-track">
+                        <div class="rating-fill" id="rating-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ✅ NOUVELLE SECTION : RESERVATION -->
+        <section id="booking-section" class="booking-section">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <span class="sec-badge">📕 حجز</span>
+                    <h2>احجز نسختك الآن</h2>
+                    <div class="sec-line"></div>
+                    <p class="sec-desc">املأ النموذج وسنتواصل معك لتأكيد الطلب</p>
+                </div>
+                <div class="booking-wrap reveal">
+                    <div class="booking-info">
+                        <div class="booking-card">
+                            <span class="booking-ico">📖</span>
+                            <div>
+                                <h3>نسخة ورقية</h3>
+                                <p>احصل على نسختك الورقية موقعة من الكاتب</p>
+                            </div>
+                        </div>
+                        <div class="booking-card">
+                            <span class="booking-ico">🚚</span>
+                            <div>
+                                <h3>توصيل لجميع الولايات</h3>
+                                <p>نوصل الكتاب إلى باب منزلك في كامل أنحاء الجزائر</p>
+                            </div>
+                        </div>
+                        <div class="booking-card">
+                            <span class="booking-ico">💳</span>
+                            <div>
+                                <h3>الدفع عند الاستلام</h3>
+                                <p>ادفع ثمن الكتاب عندما يصلك</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-form-wrap">
+                        <form id="booking-form" action="https://formspree.io/f/xoeabjoy" method="POST" novalidate>
+                            <input type="hidden" name="_language" value="ar" />
+                            <input type="hidden" name="delivery_price" id="delivery-price" value="0" />
+                            <input type="hidden" name="total_price" id="total-price" value="0" />
+
+                            <div class="booking-field" id="bg-name">
+                                <label for="b-name">👤 الاسم <span class="req">*</span></label>
+                                <div class="input-icon-wrap">
+                                    <input type="text" id="b-name" name="name" placeholder="أدخل اسمك" />
+                                </div>
+                                <span class="ferr" id="err-bname"></span>
+                            </div>
+
+                            <div class="booking-field" id="bg-surname">
+                                <label for="b-surname">👤 اللقب <span class="req">*</span></label>
+                                <div class="input-icon-wrap">
+                                    <input type="text" id="b-surname" name="surname" placeholder="أدخل لقبك" />
+                                </div>
+                                <span class="ferr" id="err-bsurname"></span>
+                            </div>
+
+                            <div class="booking-field" id="bg-wilaya">
+                                <label for="b-wilaya">📍 الولاية <span class="req">*</span></label>
+                                <div class="input-icon-wrap">
+
+                                    <select id="b-wilaya" name="wilaya">
+                    <option value="" disabled selected>اختر ولايتك</option>
+                    <option value="01">01 - أدرار</option>
+                    <option value="02">02 - الشلف</option>
+                    <option value="03">03 - الأغواط</option>
+                    <option value="04">04 - أم البواقي</option>
+                    <option value="05">05 - باتنة</option>
+                    <option value="06">06 - بجاية</option>
+                    <option value="07">07 - بسكرة</option>
+                    <option value="08">08 - بشار</option>
+                    <option value="09">09 - البليدة</option>
+                    <option value="10">10 - البويرة</option>
+                    <option value="11">11 - تمنراست</option>
+                    <option value="12">12 - تبسة</option>
+                    <option value="13">13 - تلمسان</option>
+                    <option value="14">14 - تيارت</option>
+                    <option value="15">15 - تيزي وزو</option>
+                    <option value="16">16 - الجزائر</option>
+                    <option value="17">17 - الجلفة</option>
+                    <option value="18">18 - جيجل</option>
+                    <option value="19">19 - سطيف</option>
+                    <option value="20">20 - سعيدة</option>
+                    <option value="21">21 - سكيكدة</option>
+                    <option value="22">22 - سيدي بلعباس</option>
+                    <option value="23">23 - عنابة</option>
+                    <option value="24">24 - قالمة</option>
+                    <option value="25">25 - قسنطينة</option>
+                    <option value="26">26 - المدية</option>
+                    <option value="27">27 - مستغانم</option>
+                    <option value="28">28 - المسيلة</option>
+                    <option value="29">29 - معسكر</option>
+                    <option value="30">30 - ورقلة</option>
+                    <option value="31">31 - وهران</option>
+                    <option value="32">32 - البيض</option>
+                    <option value="33">33 - إليزي</option>
+                    <option value="34">34 - برج بوعريريج</option>
+                    <option value="35">35 - بومرداس</option>
+                    <option value="36">36 - الطارف</option>
+                    <option value="37">37 - تندوف</option>
+                    <option value="38">38 - تيسمسيلت</option>
+                    <option value="39">39 - الوادي</option>
+                    <option value="40">40 - خنشلة</option>
+                    <option value="41">41 - سوق أهراس</option>
+                    <option value="42">42 - تيبازة</option>
+                    <option value="43">43 - ميلة</option>
+                    <option value="44">44 - عين الدفلى</option>
+                    <option value="45">45 - النعامة</option>
+                    <option value="46">46 - عين تموشنت</option>
+                    <option value="47">47 - غرداية</option>
+                    <option value="48">48 - غليزان</option>
+                    <option value="49">49 - تيميمون</option>
+                    <option value="50">50 - برج باجي مختار</option>
+                    <option value="51">51 - أولاد جلال</option>
+                    <option value="52">52 - بني عباس</option>
+                    <option value="53">53 - عين صالح</option>
+                    <option value="54">54 - عين قزام</option>
+                    <option value="55">55 - تقرت</option>
+                    <option value="56">56 - جانت</option>
+                    <option value="57">57 - المغير</option>
+                    <option value="58">58 - المنيعة</option>
+                  </select>
+                                    <span class="select-arrow">▾</span>
+                                </div>
+                                <span class="ferr" id="err-bwilaya"></span>
+                            </div>
+
+                            <div class="booking-field" id="bg-phone">
+                                <label for="b-phone">📞 رقم الهاتف <span class="req">*</span></label>
+                                <div class="input-icon-wrap">
+                                    <input type="tel" id="b-phone" name="phone" placeholder="07 XX XX XX XX" dir="ltr" />
+                                </div>
+                                <span class="ferr" id="err-bphone"></span>
+                            </div>
+
+                            <div class="booking-field" id="bg-copies">
+                                <label for="b-copies">📦 عدد النسخ <span class="req">*</span></label>
+                                <div class="input-icon-wrap">
+                                    <input type="number" id="b-copies" name="copies" min="1" max="50" placeholder="1" />
+                                </div>
+                                <span class="ferr" id="err-bcopies"></span>
+                            </div>
+
+                            <!-- Affichage des prix -->
+                            <div class="price-summary">
+                                <div class="price-row">
+                                    <span>🚚 سعر التوصيل :</span>
+                                    <strong id="delivery-display">0 DA</strong>
+                                </div>
+                                <div class="price-row">
+                                    <span>📖 سعر الكتب (600 DA × العدد) :</span>
+                                    <strong id="books-display">0 DA</strong>
+                                </div>
+                                <div class="price-row total-row">
+                                    <span>💰 المجموع الكلي :</span>
+                                    <strong id="total-display">0 DA</strong>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="submit-btn" id="booking-submit">
+                <span class="s-text">تأكيد الحجز 📤</span>
+                <span class="s-loader"><span></span><span></span><span></span></span>
+              </button>
+                            <p class="form-err-global" id="booking-err-global"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- التواصل -->
+        <section id="contact-section" class="contact-section">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <span class="sec-badge">📬 تواصل</span>
+                    <h2>تواصل مع المسؤول</h2>
+                    <div class="sec-line"></div>
+                    <p class="sec-desc">نسعد بتلقي رسائلك واستفساراتك</p>
+                </div>
+                <div class="contact-grid reveal">
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <div class="info-ico">📖</div>
+                            <div>
+                                <h4>عن الكتاب</h4>
+                                <p>استفسار حول الرواية أو محتواها</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-ico">✍️</div>
+                            <div>
+                                <h4>للكاتب</h4>
+                                <p>تواصل مع صاحب العمل الأدبي</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-ico">🤝</div>
+                            <div>
+                                <h4>شراكات</h4>
+                                <p>تعاون ونشر وفعاليات أدبية</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-ico">💬</div>
+                            <div>
+                                <h4>آراء القراء</h4>
+                                <p>شاركنا رأيك وتجربتك</p>
+                            </div>
+                        </div>
+                        <div class="info-quote">
+                            <p>"كل رسالة تصلنا هي ابتسامة تُلهمنا للاستمرار"</p>
+                        </div>
+                    </div>
+                    <div class="form-wrap">
+                        <div class="form-success" id="form-success">
+                            <div class="success-ico">🎉</div>
+                            <h3>تم الإرسال بنجاح!</h3>
+                            <p>سنرد عليك في أقرب وقت ممكن</p>
+                            <button id="form-back" class="btn btn-gold">إرسال رسالة أخرى</button>
+                        </div>
+                        <form id="contact-form" action="https://formspree.io/f/xoeabjoy" method="POST" novalidate>
+                            <input type="hidden" name="_language" value="ar" />
+                            <div class="field" id="fg-name">
+                                <label for="f-name">👤 الاسم الكامل <span class="req">*</span></label>
+                                <input type="text" id="f-name" name="name" placeholder="اسمك الكامل" />
+                                <span class="ferr" id="err-name"></span>
+                            </div>
+                            <div class="field" id="fg-email">
+                                <label for="f-email">📧 البريد الإلكتروني <span class="req">*</span></label>
+                                <input type="email" id="f-email" name="email" placeholder="example@email.com" dir="ltr" />
+                                <span class="ferr" id="err-email"></span>
+                            </div>
+                            <div class="field" id="fg-subject">
+                                <label for="f-subject">📌 الموضوع <span class="req">*</span></label>
+                                <div class="sel-wrap">
+                                    <select id="f-subject" name="subject">
+                    <option value="" disabled selected>اختر الموضوع</option>
+                    <option>استفسار عن الكتاب</option>
+                    <option>رأي القارئ ومراجعة</option>
+                    <option>طلب توقيع أو إهداء</option>
+                    <option>تعاون ونشر</option>
+                    <option>فعاليات أدبية</option>
+                    <option>اقتراح أو ملاحظة</option>
+                    <option>أخرى</option>
+                  </select>
+                                    <span class="sel-arrow">▾</span>
+                                </div>
+                                <span class="ferr" id="err-subject"></span>
+                            </div>
+                            <div class="field" id="fg-msg">
+                                <label for="f-msg">✍️ رسالتك <span class="req">*</span></label>
+                                <textarea id="f-msg" name="message" rows="5" maxlength="1000" placeholder="اكتب رسالتك..."></textarea>
+                                <div class="field-foot">
+                                    <span class="ferr" id="err-msg"></span>
+                                    <span class="char-cnt" id="char-cnt">0 / 1000</span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>⭐ تقييمك للكتاب (اختياري)</label>
+                                <div class="fstars" id="fstars">
+                                    <span class="fs" data-v="1">★</span>
+                                    <span class="fs" data-v="2">★</span>
+                                    <span class="fs" data-v="3">★</span>
+                                    <span class="fs" data-v="4">★</span>
+                                    <span class="fs" data-v="5">★</span>
+                                </div>
+                                <input type="hidden" name="rating" id="f-rating" />
+                            </div>
+                            <div class="field" id="fg-agree">
+                                <label class="chk-label">
+                  <input type="checkbox" id="f-agree" name="agree"/>
+                  <span class="chk-box"></span>
+                  <span>أوافق على التواصل معي بخصوص هذه الرسالة</span>
+                </label>
+                                <span class="ferr" id="err-agree"></span>
+                            </div>
+                            <button type="submit" class="submit-btn" id="submit-btn">
+                <span class="s-text">إرسال الرسالة 📤</span>
+                <span class="s-loader"><span></span><span></span><span></span></span>
+              </button>
+                            <p class="form-err-global" id="form-err-global"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- الفوتر -->
+        <footer class="footer">
+            <!-- Ticker (défilement continu) -->
+            <div class="ticker-wrap">
+                <div class="ticker-track" id="ticker-track">
+                    <span class="ticker-item">✦ ابتسامة واحدة قد تُلهم حكاية كاملة</span>
+                    <span class="ticker-item">💛 الحب ليس دائمًا موجودًا حين تحتاجه، لكنه يترك أثره حين يرحل</span>
+                    <span class="ticker-item">🌙 بعض الجروح لا تُشفى، بل تتحوّل إلى حكايات نرويها لمن يستحق</span>
+                    <span class="ticker-item">✦ أحيانًا يكفي أن تبتسم لشخص ما لتترك في روحه ضوءًا لا يُطفأ</span>
+                    <span class="ticker-item">💔 الفراق لا يعني النسيان، بل يعني أن بعض الناس خُلقوا جزءًا من قصتنا لا نهايتها</span>
+                    <span class="ticker-item">⭐ ليس كل حبٍّ يُكتب ليُروى، فبعض الحكايات تُكتب لأنها تركت في القلب أثرًا لا يزول</span>
+                    <span class="ticker-item">✦ ابتسامة واحدة قد تُلهم حكاية كاملة</span>
+                    <span class="ticker-item">💛 الحب ليس دائمًا موجودًا حين تحتاجه، لكنه يترك أثره حين يرحل</span>
+                    <span class="ticker-item">🌙 بعض الجروح لا تُشفى، بل تتحوّل إلى حكايات نرويها لمن يستحق</span>
+                    <span class="ticker-item">✦ أحيانًا يكفي أن تبتسم لشخص ما لتترك في روحه ضوءًا لا يُطفأ</span>
+                    <span class="ticker-item">💔 الفراق لا يعني النسيان، بل يعني أن بعض الناس خُلقوا جزءًا من قصتنا لا نهايتها</span>
+                    <span class="ticker-item">⭐ ليس كل حبٍّ يُكتب ليُروى، فبعض الحكايات تُكتب لأنها تركت في القلب أثرًا لا يزول</span>
+                </div>
+            </div>
+            <div class="footer-main">
+                <div class="footer-col footer-identity">
+                    <div class="footer-logo"><span class="footer-logo-icon">📖</span><span class="footer-logo-text">ابتسامتك إلهامي</span></div>
+                    <p class="footer-desc">رواية عاطفية تسكن القلب، تحكي عن الحب والفراق والإلهام. كلمات تُلهم وتُحرّك المشاعر.</p>
+                    <form class="footer-newsletter" id="footer-newsletter-form">
+                        <label for="footer-email" class="newsletter-label">اشترك ليصلك كل جديد</label>
+                        <div class="newsletter-input-wrap">
+                            <input type="email" id="footer-email" placeholder="بريدك الإلكتروني" required dir="ltr" />
+                            <button type="submit" class="newsletter-btn" aria-label="اشتراك">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+              </button>
+                        </div>
+                        <p class="newsletter-msg" id="newsletter-msg"></p>
+                    </form>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61583998650641" class="social-btn" aria-label="فيسبوك" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/tamedyazt._.uhulfu" class="social-btn" aria-label="انستغرام" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@tamedyazet._.uhulfu" class="social-btn" aria-label="تيك توك" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 5.2-1.74V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.54-.05z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title"><span class="col-title-line"></span>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero-section"><span>🏠</span> الرئيسية</a></li>
+                        <li><a href="#about-section"><span>📖</span> عن الكتاب</a></li>
+                        <li><a href="#chapters-section"><span>📚</span> الفصول</a></li>
+                        <li><a href="#reviews-section"><span>⭐</span> آراء القراء</a></li>
+                        <li><a href="#quotes-section"><span>💬</span> اقتباسات</a></li>
+                        <li><a href="#booking-section"><span>📅</span> احجز نسختك</a></li>
+                        <li><a href="#contact-section"><span>📬</span> تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title"><span class="col-title-line"></span>عن الرواية</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><span>💘</span> الحب والملاذ</a></li>
+                        <li><a href="#"><span>💔</span> الإهمال والوجع</a></li>
+                        <li><a href="#"><span>🌙</span> الفراق والأثر</a></li>
+                        <li><a href="#"><span>✨</span> الإلهام والابتسامة</a></li>
+                    </ul>
+                    <div class="footer-rating-mini">
+                        <div class="mini-stars">★★★★★</div>
+                        <p>4.9 / 5 — تقييم القراء</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title"><span class="col-title-line"></span>تواصل معنا</h4>
+                    <ul class="footer-contact-list">
+                        <li><span class="fc-icon">📍</span><span>الجزائر</span></li>
+                        <li><span class="fc-icon">✉️</span><span>thizirikhesrani@gmail.com</span></li>
+                        <li><span class="fc-icon">🕐</span><span>الرد خلال 24 ساعة</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider">
+                <span></span>
+                <span class="footer-divider-icon">📖</span>
+                <span></span>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2026 ابتسامتك إلهامي — جميع الحقوق محفوظة</p>
+                <div class="footer-legal-links">
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">الشروط والأحكام</a>
+                </div>
+                <p class="footer-made">صُنع بـ ❤️ للقراء العرب</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- مودال الغلاف -->
+    <div class="modal" id="modal">
+        <div class="modal-wrap" id="modal-wrap">
+            <button class="modal-close" id="modal-close">✕</button>
+            <img src="photo.png" alt="غلاف الكتاب" />
+            <div class="modal-info">
+                <h3>ابتسامتك إلهامي</h3>
+                <p>Esc للإغلاق</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- زر الأعلى -->
+    <button id="go-top" class="go-top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
