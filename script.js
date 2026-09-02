@@ -3115,7 +3115,7 @@ $$('a[href^="#"]').forEach(
   const messages = {
 
     hero: {
-      title: 'Lucky ✨',
+      title: 'Ziri ✨',
       text:
         'أهلاً بك ❤️ أنا رفيقك الصغير، وسأرافقك في رحلة "ابتسامتك إلهامي".',
       side: 'right'
@@ -3597,7 +3597,7 @@ $$('a[href^="#"]').forEach(
             );
 
             title.textContent =
-              'Lucky 🤍';
+              'Ziri 🤍';
 
             mascot.classList.add(
               'dialog',
